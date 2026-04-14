@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NUV Nest — {% block title %}Dashboard{% endblock %}</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  <!-- ══ BLURRED BACKGROUND ══ -->
+  <div class="bg-layer"></div>
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="toggle-btn" id="toggleBtn" title="Toggle sidebar">
+      <i class='bx bx-chevron-left'></i>
+    </div>
+
+    <div class="sidebar-inner">
+
+      <!-- Logo -->
+      <div class="logo-area">
+        <div class="college-logo">
+          <img src="{{ url_for('static', filename='images/logo.png') }}"
+               alt="NUV Logo"
+               onerror="this.style.display='none'"/>
+        </div>
+        <div class="logo-text">
+          <span class="brand">NUV Nest</span>
+          <span class="sub">Navrachana University</span>
+        </div>
+      </div>
+
+      <!-- Nav links -->
+      <div class="nav-section">
+        <div class="nav-label">Main</div>
+
+        <a class="nav-item {% if active=='dashboard' %}active{% endif %}"
+           href="{{ url_for('dashboard') }}" data-tip="Dashboard">
+          <i class='bx bxs-dashboard'></i><span>Dashboard</span>
+        </a>
+
+        <a class="nav-item {% if active=='chatbot' %}active{% endif %}"
+           href="{{ url_for('chatbot') }}" data-tip="Chatbot">
+          <i class='bx bx-bot'></i><span>AI Chatbot</span>
+          <span class="nav-badge">New</span>
+        </a>
+
+        <a class="nav-item {% if active=='canteen' %}active{% endif %}"
+           href="{{ url_for('canteen') }}" data-tip="Canteen">
+          <i class='bx bx-dish'></i><span>Canteen Booking</span>
+        </a>
+
+        <!-- FIX: was url_for('campus_map') — corrected to url_for('campus') -->
+        <a class="nav-item {% if active=='campus' %}active{% endif %}"
+           href="{{ url_for('campus') }}" data-tip="Campus Map">
+          <i class='bx bx-map-alt'></i><span>Campus Map</span>
+        </a>
+
+        <a class="nav-item {% if active=='attendance' %}active{% endif %}"
+           href="{{ url_for('attendance') }}" data-tip="Attendance">
+          <i class='bx bx-calendar-check'></i><span>Attendance</span>
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-label">Account</div>
+        <a class="nav-item" href="#" data-tip="Profile">
+          <i class='bx bx-user-circle'></i><span>Profile</span>
+        </a>
+        <a class="nav-item" href="#" data-tip="Logout">
+          <i class='bx bx-log-out'></i><span>Logout</span>
+        </a>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-card">
+          <div class="avatar">AK</div>
+          <div class="user-info">
+            <div class="uname">Arjun Kumar</div>
+            <div class="urole">CSE — Sem 4</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end sidebar-inner -->
+  </aside>
+
+  <!-- ══ MAIN WRAPPER ══ -->
+  <div class="main-wrapper" id="mainWrapper">
+
+    <!-- Top Bar -->
+    <header class="topbar">
+      <div class="topbar-title">
+        <h1>{% block page_title %}Dashboard{% endblock %}</h1>
+        <span class="topbar-date" id="live-date"></span>
+      </div>
+      <div class="topbar-actions">
+        <!-- FIX: buttons now navigate to proper routes -->
+        <a href="{{ url_for('about') }}">
+    <button class="btn-ghost">About Us</button>
+</a>
+
+<a href="{{ url_for('contact') }}">
+    <button class="btn-ghost">Contact Us</button>
+</a>
+        <div class="avatar">S</div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="page-content">
+      {% block content %}{% endblock %}
+    </main>
+
+  </div><!-- end main-wrapper -->
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+  <script>
+    // Sidebar toggle
+    const sidebar    = document.getElementById('sidebar');
+    const mainWrapper = document.getElementById('mainWrapper');
+    const toggleBtn  = document.getElementById('toggleBtn');
+
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      mainWrapper.classList.toggle('expanded');
+    });
+
+    // Live date
+    const dateEl = document.getElementById('live-date');
+    if (dateEl) {
+      const now = new Date();
+      dateEl.textContent = now.toLocaleDateString('en-IN', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
+    }
+  </script>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>
