@@ -2,10 +2,14 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-
 @app.route("/")
 def dashboard():
     return render_template("dashboard.html", active="dashboard")
+
+# 👇 NEW ROUTE (ADD THIS)
+@app.route("/menu")
+def menu():
+    return render_template("menu.html", active="canteen")
 
 @app.route("/canteen")
 def canteen():
@@ -23,8 +27,6 @@ def attendance():
 def chatbot():
     return render_template("chatbot.html", active="chatbot")
 
-
-
 @app.route("/about")
 def about():
     return render_template("about.html", active="about")
@@ -32,8 +34,6 @@ def about():
 @app.route("/contact")
 def contact():
     return render_template("contact.html", active="contact")
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)
