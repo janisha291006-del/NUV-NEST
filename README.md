@@ -6,7 +6,7 @@ NUV-NEST is a smart campus canteen and student utility platform designed to simp
 
 ##  Features
 
-* 🥗 **Canteen Menu System**
+*  **Canteen Menu System**
 
   * Browse food items with images
   * Categorized menu (snacks, meals, beverages)
@@ -114,6 +114,6 @@ Janisha Patel
 Meet Buddhdev
 ---
 
-## 📄 License
+##  License
 
 This project is open-source and available for educational purposes.
