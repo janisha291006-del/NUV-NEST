@@ -1,4 +1,4 @@
-# 🍽️ NUV-NEST
+#  NUV-NEST
 
 NUV-NEST is a smart campus canteen and student utility platform designed to simplify food ordering, campus navigation, and student interaction through an integrated chatbot system.
 
