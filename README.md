@@ -106,14 +106,6 @@ http://127.0.0.1:5000/
 * Real-time order tracking
 * Deployment (Heroku / Render)
 
----
-
-##  Author
-
-Janisha Patel
-<br>
-Meet Buddhdev
----
 
 ##  License
 
